@@ -1,0 +1,206 @@
+type: grid
+cards:
+  - type: grid
+    cards:
+      - type: markdown
+        content: '## Produkcja'
+      - type: grid
+        columns: 3
+        cards:
+          - type: gauge
+            min: 0
+            max: 6047
+            severity:
+              green: 3000
+              yellow: 1500
+              red: 0
+            name: Obecna
+            entity: sensor.solar_power_now
+          - entity: sensor.produkcja_dzien_kwh
+            max: 50
+            severity:
+              green: 20
+              red: 0
+              yellow: 10
+            type: gauge
+            min: 0
+            name: Dziś
+          - type: gauge
+            min: 0
+            name: Miesięcznie
+            severity:
+              green: 500
+              yellow: 300
+              red: 0
+            max: 1000
+            entity: sensor.energy_produce_monthly
+      - type: grid
+        cards:
+          - type: gauge
+            min: 0
+            max: 10000
+            entity: sensor.produkcja_rok_kwh
+            name: Rocznie
+            severity:
+              green: 6000
+              yellow: 4000
+              red: 0
+          - type: gauge
+            min: 200
+            max: 270
+            entity: sensor.voltage_ac_fronius_inverter_1_http_192_168_0_21
+            name: Solar AC [V]
+            severity:
+              green: 235
+              yellow: 240
+              red: 250
+        square: true
+    columns: 1
+    square: false
+  - type: custom:power-wheel-card
+    title: Obecny import/export energii
+    solar_power_entity: sensor.solar_power_now
+    grid_power_entity: sensor.power_sum
+    production_is_positive: false
+    solar_icon: mdi:solar-power
+    power_decimals: 2
+    debug: false
+  - type: custom:power-wheel-card
+    title: Dzienny export energii
+    solar_power_entity: sensor.energy_produce_daily
+    grid_power_entity: sensor.energy_exported_daily
+    production_is_positive: true
+    solar_icon: mdi:solar-power
+    power_decimals: 2
+    debug: false
+  - type: grid
+    cards:
+      - type: markdown
+        content: '## Podsumowanie'
+      - type: grid
+        cards:
+          - type: gauge
+            entity: sensor.energy_exported_daily
+            min: 0
+            max: 60
+            name: Oddana dziś
+            severity:
+              green: 20
+              yellow: 10
+              red: 0
+          - type: gauge
+            entity: sensor.energy_exported_monthly
+            min: 0
+            max: 1200
+            name: Oddana miesięcznie
+            severity:
+              green: 800
+              yellow: 500
+              red: 0
+          - type: gauge
+            entity: sensor.energy_imported_daily
+            min: 0
+            max: 300
+            name: Pobrana dziś
+            severity:
+              green: 0
+              yellow: 100
+              red: 250
+          - type: gauge
+            entity: sensor.energy_imported_monthly
+            min: 0
+            name: Pobrana miesięcznie
+            severity:
+              green: 0
+              yellow: 250
+              red: 500
+            max: 2000
+        columns: 2
+    square: false
+    columns: 1
+  - type: grid
+    cards:
+      - type: markdown
+        content: '## Obciążenie bieżące'
+      - type: grid
+        cards:
+          - type: gauge
+            entity: sensor.current_phase_1
+            min: 0
+            max: 25
+            severity:
+              green: 0
+              yellow: 12
+              red: 17
+            name: Obciążenie F1
+          - type: gauge
+            entity: sensor.current_phase_2
+            min: 0
+            max: 25
+            severity:
+              green: 0
+              yellow: 12
+              red: 17
+            name: Obciążenie F2
+          - type: gauge
+            entity: sensor.current_phase_3
+            min: 0
+            max: 25
+            severity:
+              green: 0
+              yellow: 12
+              red: 17
+            name: Obciążenie F3
+          - type: gauge
+            entity: sensor.current_sum
+            min: 0
+            max: 75
+            severity:
+              green: 0
+              yellow: 40
+              red: 55
+            name: Obciążenie Suma
+        columns: 4
+      - type: grid
+        cards:
+          - type: gauge
+            max: 4600
+            entity: sensor.power_phase_1
+            min: -6000
+            severity:
+              green: 0
+              yellow: 2000
+              red: 3000
+            name: Moc F1
+          - type: gauge
+            max: 4600
+            entity: sensor.power_phase_2
+            min: -6000
+            severity:
+              green: 0
+              yellow: 2000
+              red: 3000
+            name: Moc F2
+          - type: gauge
+            max: 4600
+            entity: sensor.power_phase_3
+            min: -6000
+            severity:
+              green: 0
+              yellow: 2000
+              red: 3000
+            name: Moc F3
+          - type: gauge
+            max: 17250
+            entity: sensor.power_sum
+            min: -6000
+            severity:
+              green: 0
+              yellow: 9000
+              red: 14000
+            name: Moc suma
+        columns: 4
+    columns: 1
+    square: false
+columns: 1
+square: false
